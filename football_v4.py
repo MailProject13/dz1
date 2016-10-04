@@ -6,10 +6,11 @@ import pandas as pd
 def add_teams():
     teams_list = list()
     
-    new_team = input('Введите название команды: ')    
-    while new_team != '':
+    team_count = int(input('Input team count: '))   
+    
+    for i in range(team_count):        
+        new_team = input('Input team name: ')
         teams_list.append(new_team)
-        new_team = input('Введите название команды: ')
         
     return teams_list
 
@@ -18,7 +19,7 @@ def match_table_form(teams_list):
     match_table = pd.DataFrame(columns=teams_list)
     
     for name in teams_list:
-        match_table.loc[name] = [random.randint(0,10) for i in range(len(teams_list))]
+        match_table.loc[name] = [random.randint(0,5) for i in range(len(teams_list))]
         match_table.loc[name][name] = 0
     
     return match_table
@@ -74,18 +75,16 @@ def result_table_form(match_table):
 
 
 def get_match_res(team1, team2):
-    team1_score = match_table.loc[team1][team2]
+    team1_score = match_table.loc[team1][team2] 
     team2_score = match_table.loc[team2][team1]
     
     return ":".join([str(team1_score), str(team2_score)])
 
 
-def main():
+if __name__ == '__main__':
     teams_list = add_teams()
     match_table = match_table_form(teams_list)
-    comp_table = result_table_form(match_table)
-    
-    print comp_table
-    
+    comp_table = result_table_form(match_table)    
 
-main()
+    print comp_table
+	# print get_match_res(team1, team2)
