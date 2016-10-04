@@ -1,4 +1,3 @@
-'''python
 import random
 
 
@@ -73,4 +72,4 @@ for i in range(0,count):
 teams.sort(key=sortbypoints, reverse=True)
 for each in teams:
     each.pr()
-'''
+
